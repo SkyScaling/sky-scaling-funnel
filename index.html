@@ -13,7 +13,7 @@
 <!-- ================= CONFIG: EDIT THESE ================= -->
 <script>
   window.SKY_CONFIG = {
-    WEBHOOK_URL: "https://services.leadconnectorhq.com/hooks/cIEiGPHzRWPAUucJJ6QA/webhook-trigger/13adcaaf-dbb8-4c7f-85e2-894f887aa096",
+    WEBHOOK_URL: "https://services.leadconnectorhq.com/hooks/cIEiGPHzRWPAUucJJ6QA/webhook-trigger/5da7ba61-8f34-42db-affa-ab0fa8845cfe",
     BOOKING_URL: "https://link.skyscaling.com/widget/booking/Mb6C5glnR9O73dSITyzw",
     LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
     RESOURCE_URL: "resource.html",
@@ -601,7 +601,7 @@
     if(state.sent) return Promise.resolve(); state.sent=true;
     var url=CFG.WEBHOOK_URL;
     if(!url){ console.log('[Sky Scaling] No WEBHOOK_URL set. Payload:', payload()); return Promise.resolve(); }
-    return fetch(url,{method:'POST',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload())})
+    return fetch(url,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())})
       .catch(function(e){ console.warn('[Sky Scaling] Webhook failed:',e); });
   }
   function withTracking(u){ var qp=new URLSearchParams(); Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); }); var q=qp.toString(); return q?(u+(u.indexOf('?')>-1?'&':'?')+q):u; }
@@ -617,7 +617,7 @@
   function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
   function validPhone(v){ return v.replace(/\D/g,'').length>=10; }
 
-  document.getElementById('lead-form').addEventListener('submit',function(e){
+  document.getElementById('lead-form').addEventListener('submit',async function(e){
     e.preventDefault();
     var name=document.getElementById('f-name').value.trim();
     var email=document.getElementById('f-email').value.trim();
@@ -629,7 +629,7 @@
     mark('f-phone','e-phone',validPhone(phone));
     if(!ok) return;
     state.contact={firstName:name,email:email,phone:phone};
-    sendLead();
+    var sendP=sendLead();
     if(state.qualified){
       var c=state.contact, qp=new URLSearchParams();
       if(c.firstName) qp.set('first_name',c.firstName);
@@ -638,6 +638,7 @@
       if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
       Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
       var dest=(CFG.BOOKING_PAGE_URL||'booking.html');
+      try{ await Promise.race([sendP, new Promise(function(res){setTimeout(res,2000);})]); }catch(_){ }
       window.location.href=dest+(dest.indexOf('?')>-1?'&':'?')+qp.toString();
       return;
     } else {
