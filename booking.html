@@ -110,7 +110,7 @@
   .book h2 .a{color:var(--accent)}
   .book .bsub{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:540px;margin:14px auto 0}
   #booking-mount{margin-top:26px}
-  #booking-mount iframe{width:100%;min-height:940px;border:none;border-radius:var(--radius);background:#fff;display:block}
+  #booking-mount iframe{width:100%;min-height:300px;border:none;border-radius:var(--radius);background:#fff;display:block}
   #booking-fallback{background:#fff;border-radius:var(--radius);padding:44px 24px;text-align:center;color:#0E1220;font-family:'Inter'}
   #booking-fallback a{color:var(--accent-d);font-weight:700}
 
@@ -147,7 +147,12 @@
 
   @media (max-width:700px){
     .tgrid{grid-template-columns:1fr}
-    #booking-mount iframe{min-height:1020px}
+    .eyebrow{margin:42px 0 14px}
+    .vwrap{margin-top:24px}
+    .book{margin-top:34px}
+    section{padding:38px 0 0;margin-top:38px}
+    .logo-item{height:24px;margin-right:20px}
+    .logo-item img{height:24px;max-width:100px}
   }
 </style>
 </head>
@@ -295,7 +300,7 @@
   }
   window.addEventListener('message', function(ev){
     var d=ev.data, booked=false;
-    if(Object.prototype.toString.call(d)==='[object Array]'){ booked = (d[0]==='msgsndr-booking-complete'); }
+    if(Object.prototype.toString.call(d)==='[object Array]'){ if(d[0]==='highlevel.setHeight'&&d[1]&&d[1].height){var _if=document.querySelector('#booking-mount iframe');if(_if)_if.style.height=d[1].height+'px';} booked = (d[0]==='msgsndr-booking-complete'); }
     else if(typeof d==='string'){ booked = d.indexOf('msgsndr-booking-complete')>-1; if(!booked){ try{ d=JSON.parse(d); }catch(_){} } }
     if(!booked && d && typeof d==='object' && Object.prototype.toString.call(d)!=='[object Array]'){
       var t=((d.type||d.event||d.action||"")+"").toLowerCase();

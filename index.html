@@ -70,6 +70,8 @@
   .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c3ccff;border:1px solid var(--border);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
 
   main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:24px 22px 90px;display:flex;flex-direction:column;justify-content:safe center}
+  main:has(#s-result.active){justify-content:flex-start;padding-top:58px}
+  main:has(#s-result.dq.active){justify-content:center;padding-top:24px}
   .screen{display:none}
   .screen.active{display:block;animation:screenIn .45s cubic-bezier(.2,.7,.2,1) both}
   @keyframes screenIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -147,8 +149,8 @@
   .load-sub{color:var(--text-3);font-size:14px;margin-top:10px}
 
   /* RESULT */
-  .r-eyebrow{text-align:center;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3)}
-  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5vw,36px);color:var(--text-2);margin:6px 0 0;line-height:1}
+  .r-eyebrow{text-align:center;font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent)}
+  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5vw,36px);color:var(--text-2);margin:14px 0 0;line-height:1}
   .num-box{background:var(--accent);border-radius:20px;padding:34px 22px;text-align:center;box-shadow:var(--glow);margin-top:16px;animation:popIn .6s cubic-bezier(.2,.8,.2,1) both}
   .num-big{font-family:'Space Grotesk';font-weight:800;font-size:clamp(52px,13vw,92px);line-height:1;color:#fff;letter-spacing:-0.03em}
   .num-cap{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-top:8px}
@@ -176,6 +178,8 @@
   #r-cta-ico{display:flex;justify-content:center}
   #r-cta-ico svg{width:46px;height:46px;color:var(--accent);margin-bottom:14px}
   .field{margin-bottom:13px}
+  .frow{display:flex;gap:11px}
+  .frow .field{flex:1}
   .field input{width:100%;padding:17px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Inter';font-size:16px;transition:border-color .15s,background .15s}
   .field input::placeholder{color:var(--text-3)}
   .field input:focus{outline:none;border-color:var(--accent);background:var(--accent-tint)}
@@ -203,6 +207,11 @@
     .stat{padding:18px 6px}.stat .num{font-size:23px}
     .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
     .num-box{padding:28px 16px}
+    .frow{flex-direction:column;gap:0}
+    .script{margin-bottom:10px}
+    .stats{margin:22px 0 6px}
+    main:has(#s-quiz.active),main:has(#s-result.active){justify-content:flex-start;padding-top:42px}
+    main:has(#s-result.dq.active){justify-content:center;padding-top:16px}
   }
 </style>
 </head>
@@ -262,7 +271,10 @@
         <h2 id="r-form-title">See How The System Works</h2>
         <p class="csub" id="r-form-sub">Enter your details and we will show you how the system works, plus the option to talk to our team.</p>
         <form id="lead-form" novalidate>
-          <div class="field"><input id="f-name" type="text" autocomplete="given-name" placeholder="Your full name"><div class="err" id="e-name">Please enter your name.</div></div>
+          <div class="frow">
+            <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
+            <div class="field"><input id="f-last" type="text" autocomplete="family-name" placeholder="Last name"><div class="err" id="e-last">Enter your last name.</div></div>
+          </div>
           <div class="field"><input id="f-email" type="email" autocomplete="email" placeholder="Your email"><div class="err" id="e-email">Please enter a valid email.</div></div>
           <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
           <button class="btn big" type="submit" id="f-submit">Show me how it works <span class="arrow">&rarr;</span></button>
@@ -540,13 +552,14 @@
   function renderResult(){
     var top=document.getElementById('r-top');
     var diagWrap=document.getElementById('r-diag-wrap');
+    var _rs=document.getElementById('s-result'); if(_rs) _rs.classList.toggle('dq', !state.qualified);
     if(state.qualified){
       calc();
       document.getElementById('lead-form').style.display='';
       document.getElementById('r-resource').style.display='none';
       document.getElementById('r-cta-ico').innerHTML='';
       top.innerHTML=
-        '<div class="r-eyebrow">Your estimate</div>'+
+        '<div class="r-eyebrow">&lt; Your estimate &gt;</div>'+
         '<div class="r-script">You are leaving about</div>'+
         '<div class="num-box">'+
           '<div class="num-big" id="r-monthly">$0</div>'+
@@ -555,8 +568,7 @@
           '<div class="num-annual" id="r-annual">$0</div>'+
           '<div class="num-annual-cap">Over 12 months</div>'+
         '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At your '+money(state.result.comm)+' commission, that is the number above, and it usually grows from there.</p>'+
-        '<p class="r-line">In a free 15-minute call, we will show you the exact system to install to go capture this, on autopilot.</p>';
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At your '+money(state.result.comm)+' commission, that is the number above, and it usually grows from there.</p>';
       var ds=diagnosis(),html='<div class="diag"><h3>What is costing you</h3><ul>';
       ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       diagWrap.innerHTML=html+'</ul></div>';
@@ -567,7 +579,7 @@
       countUp(document.getElementById('r-annual'), state.result.annual);
     } else {
       var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
-      top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">Straight talk</div>';
+      top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">&lt; Straight talk &gt;</div>';
       diagWrap.innerHTML='';
       document.getElementById('r-cta-ico').innerHTML=icon('shield');
       document.getElementById('lead-form').style.display='none';
@@ -586,7 +598,7 @@
       return val;
     }
     var d={
-      firstName:state.contact.firstName, email:state.contact.email, phone:state.contact.phone,
+      firstName:state.contact.firstName, lastName:state.contact.lastName, email:state.contact.email, phone:state.contact.phone,
       source:'Living Benefits Quiz Funnel',
       qualified:state.qualified, dq_reason:state.dqReason,
       estimated_monthly:state.result?state.result.monthly:null,
@@ -608,6 +620,7 @@
   function bookingSrc(){
     var base=CFG.BOOKING_URL||'',c=state.contact||{},qp=new URLSearchParams();
     if(c.firstName) qp.set('first_name',c.firstName);
+    if(c.lastName) qp.set('last_name',c.lastName);
     if(c.email) qp.set('email',c.email);
     if(c.phone) qp.set('phone',c.phone);
     Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
@@ -619,20 +632,23 @@
 
   document.getElementById('lead-form').addEventListener('submit',async function(e){
     e.preventDefault();
-    var name=document.getElementById('f-name').value.trim();
+    var first=document.getElementById('f-first').value.trim();
+    var last=document.getElementById('f-last').value.trim();
     var email=document.getElementById('f-email').value.trim();
     var phone=document.getElementById('f-phone').value.trim();
     var ok=true;
     function mark(id,eid,good){ document.getElementById(id).classList.toggle('invalid',!good); document.getElementById(eid).classList.toggle('show',!good); if(!good) ok=false; }
-    mark('f-name','e-name',name.length>=1);
+    mark('f-first','e-first',first.length>=1);
+    mark('f-last','e-last',last.length>=1);
     mark('f-email','e-email',validEmail(email));
     mark('f-phone','e-phone',validPhone(phone));
     if(!ok) return;
-    state.contact={firstName:name,email:email,phone:phone};
+    state.contact={firstName:first,lastName:last,email:email,phone:phone};
     var sendP=sendLead();
     if(state.qualified){
       var c=state.contact, qp=new URLSearchParams();
       if(c.firstName) qp.set('first_name',c.firstName);
+      if(c.lastName) qp.set('last_name',c.lastName);
       if(c.email) qp.set('email',c.email);
       if(c.phone) qp.set('phone',c.phone);
       if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
@@ -643,7 +659,7 @@
       return;
     } else {
       document.getElementById('thanks-ico').innerHTML=icon('shield');
-      document.getElementById('thanks-title').textContent='Thanks, '+(name.split(' ')[0])+'.';
+      document.getElementById('thanks-title').textContent='Thanks, '+first+'.';
       var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
       document.getElementById('thanks-msg').textContent="We've saved your details and we'll reach out when the timing makes sense. "+m.msg;
       show('s-thanks');
