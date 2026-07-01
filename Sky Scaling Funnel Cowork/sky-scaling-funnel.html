@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Are You Leaving On The Table? | Sky Scaling</title>
+<meta name="description" content="Find out the Living Benefits commission you're leaving on the table every month, and the exact system to capture it. Built for licensed Canadian Life & A&S agents.">
+<meta property="og:title" content="How Much Are You Leaving On The Table? | Sky Scaling">
+<meta property="og:description" content="A 2-minute assessment for licensed Canadian life agents. See your estimated missed Living Benefits commission and the system to capture it.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#06080F">
+
+<!-- ================= CONFIG: EDIT THESE ================= -->
+<script>
+  window.SKY_CONFIG = {
+    WEBHOOK_URL: "https://services.leadconnectorhq.com/hooks/cIEiGPHzRWPAUucJJ6QA/webhook-trigger/ab9f4766-f217-4811-a259-96b6a7524b5c",
+    BOOKING_URL: "https://link.skyscaling.com/widget/booking/Mb6C5glnR9O73dSITyzw",
+    LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
+    RESOURCE_URL: "resource.html",
+    BOOKING_PAGE_URL: "booking.html"
+  };
+</script>
+<!-- ===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06080F;
+    --panel:#0E1220;
+    --panel-2:#131829;
+    --border:rgba(148,160,196,0.14);
+    --border-strong:rgba(148,160,196,0.30);
+    --accent:#5271ff;
+    --accent-2:#8f6bff;
+    --accent-d:#3f5ae6;
+    --accent-glow:rgba(82,113,255,0.50);
+    --accent-tint:rgba(82,113,255,0.13);
+    --grad:linear-gradient(135deg,#5271ff 0%,#8f6bff 100%);
+    --text:#F5F7FE;
+    --text-2:#AEB7D0;
+    --text-3:#727C99;
+    --leaf:#EF4444;
+    --radius:16px;
+    --glow:0 22px 60px -20px var(--accent-glow);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;
+    min-height:100vh;position:relative;overflow-x:hidden;
+  }
+  .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .bg-grid{
+    background-image:linear-gradient(rgba(148,160,196,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,160,196,0.05) 1px,transparent 1px);
+    background-size:54px 54px;
+    -webkit-mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);
+    mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);
+  }
+  .bg-glow{background:radial-gradient(620px 420px at 18% 6%,rgba(82,113,255,0.20),transparent 68%),radial-gradient(620px 520px at 84% 96%,rgba(143,107,255,0.16),transparent 70%);}
+  .wrap{position:relative;z-index:1;width:100%;margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column}
+
+  header{width:100%;border-bottom:1px solid var(--border)}
+  .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:800;font-size:18px;letter-spacing:-0.02em}
+  .logo img{height:33px;width:auto;display:block;filter:drop-shadow(0 0 16px rgba(82,113,255,0.55))}
+  .logo .fallback{display:none;background:linear-gradient(135deg,#5271ff,#8f6bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c3ccff;border:1px solid var(--border);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
+
+  main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:24px 22px 90px;display:flex;flex-direction:column;justify-content:safe center}
+  .screen{display:none}
+  .screen.active{display:block;animation:screenIn .45s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes screenIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes slideR{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
+  @keyframes slideL{from{opacity:0;transform:translateX(-34px)}to{opacity:1;transform:none}}
+  @keyframes popIn{0%{opacity:0;transform:scale(.86)}60%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+  /* INTRO */
+  .script{display:block;text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5.5vw,40px);color:var(--text-2);line-height:1;margin-bottom:22px}
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:700;text-align:center;line-height:0.95;letter-spacing:-0.03em;font-size:clamp(56px,14vw,112px);text-transform:uppercase}
+  .hero-title .top{display:block}
+  .hero-title .hl{display:inline-block;background:var(--accent);color:#fff;padding:4px 22px 10px;border-radius:16px;box-shadow:var(--glow);margin-top:8px}
+  .hero-sub{text-align:center;color:var(--text-2);font-size:clamp(15px,2.4vw,18px);line-height:1.65;max-width:530px;margin:26px auto 0}
+  .hero-sub b{color:#fff;font-weight:600}
+  #s-intro{padding-top:0}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0 6px}
+  .stat{padding:22px 10px;text-align:center;background:var(--panel);border-radius:var(--radius)}
+  .stat:last-child{border-right:none}
+  .stat .sico{color:var(--accent);display:flex;justify-content:center;margin-bottom:8px}
+  .stat .sico svg{width:22px;height:22px}
+  .stat .num{font-family:'Space Grotesk';font-weight:800;font-size:28px;line-height:1;color:#fff}
+  .stat .lbl{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-top:8px}
+  .trust{text-align:center;color:var(--text-3);font-size:13px;margin-top:20px}
+
+  /* BUTTONS */
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;cursor:pointer;text-decoration:none;
+    font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:0.03em;text-transform:uppercase;
+    padding:20px 24px;border-radius:14px;color:#fff;background:var(--accent);box-shadow:var(--glow);
+    transition:transform .15s ease,box-shadow .2s ease,background .2s ease,opacity .2s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--accent-d);box-shadow:0 26px 70px -18px var(--accent-glow)}
+  .btn:active{transform:translateY(0)}
+  .btn .arrow{transition:transform .2s ease;display:inline-flex}
+  .btn:hover .arrow{transform:translateX(5px)}
+  .btn.big{margin-top:28px}
+  .back{display:block;margin:22px auto 0;background:none;border:none;color:var(--text-3);font-family:'Inter';font-size:14px;cursor:pointer;width:100%;transition:color .15s}
+  .back:hover{color:var(--text-2)}
+
+  /* QUIZ */
+  .q-count{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px}
+  .progress{display:flex;gap:7px;margin-bottom:30px}
+  .progress span{flex:1;height:5px;border-radius:99px;background:rgba(148,160,196,0.16);overflow:hidden}
+  .progress span i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .progress span.done i{width:100%}
+  .q-title{font-family:'Space Grotesk';font-weight:800;font-size:clamp(27px,5.2vw,42px);line-height:1.08;letter-spacing:-0.02em;color:#fff}
+  .q-sub{color:var(--text-3);font-size:14px;margin-top:10px}
+
+  .opts{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .opt{display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius);
+    background:var(--panel);color:var(--text);cursor:pointer;text-align:left;width:100%;font-family:inherit;
+    transition:border-color .16s ease,background .16s ease,transform .12s ease,box-shadow .16s ease}
+  .opt:hover{border-color:var(--border-strong);background:var(--panel-2);transform:translateY(-1px)}
+  .opt.sel{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset,0 14px 40px -20px var(--accent-glow)}
+  .opt .oico{flex:none;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(148,160,196,0.10);border:1px solid var(--border);color:var(--text-2);transition:.16s}
+  .opt .oico svg{width:24px;height:24px}
+  .opt.sel .oico{background:var(--accent);border-color:transparent;color:#fff}
+  .opt .otxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+  .opt .ot{font-family:'Inter';font-weight:600;font-size:16px;line-height:1.3;color:#fff}
+  .opt .os{color:var(--text-3);font-size:13px;line-height:1.3}
+  .opt .radio{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border-strong);position:relative;transition:border-color .16s}
+  .opt.sel .radio{border-color:var(--accent)}
+  .opt.sel .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--accent)}
+
+  /* LOADING */
+  #s-loading{text-align:center;padding:30px 0}
+  .loader{position:relative;width:150px;height:150px;margin:10px auto 30px}
+  .loader .halo{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,var(--accent-glow),transparent 62%);filter:blur(6px);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.5;transform:scale(.92)}50%{opacity:1;transform:scale(1.05)}}
+  .loader svg{position:relative;transform:rotate(-90deg)}
+  .loader .lpct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:800;font-size:34px;color:#fff}
+  .load-title{font-family:'Space Grotesk';font-weight:800;font-size:clamp(22px,4.6vw,30px);text-transform:uppercase;letter-spacing:-0.01em;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .load-sub{color:var(--text-3);font-size:14px;margin-top:10px}
+
+  /* RESULT */
+  .r-eyebrow{text-align:center;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3)}
+  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5vw,36px);color:var(--text-2);margin:6px 0 0;line-height:1}
+  .num-box{background:var(--accent);border-radius:20px;padding:34px 22px;text-align:center;box-shadow:var(--glow);margin-top:16px;animation:popIn .6s cubic-bezier(.2,.8,.2,1) both}
+  .num-big{font-family:'Space Grotesk';font-weight:800;font-size:clamp(52px,13vw,92px);line-height:1;color:#fff;letter-spacing:-0.03em}
+  .num-cap{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-top:8px}
+  .num-div{height:1px;background:rgba(255,255,255,0.25);margin:22px auto;max-width:260px}
+  .num-annual{font-family:'Space Grotesk';font-weight:800;font-size:clamp(26px,6vw,40px);color:#fff;line-height:1}
+  .num-annual-cap{font-family:'Space Grotesk';font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:6px}
+  .r-line{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:480px;margin:24px auto 0}
+
+  .msg-box{border:1px solid var(--border-strong);background:var(--panel);border-radius:20px;padding:30px 24px;text-align:center;margin-top:14px;animation:popIn .55s ease both}
+  .msg-box .mi{color:var(--accent);display:flex;justify-content:center;margin-bottom:14px}
+  .msg-box .mi svg{width:40px;height:40px}
+  .msg-box h2{font-family:'Space Grotesk';font-weight:800;font-size:clamp(22px,4.6vw,28px);letter-spacing:-0.02em}
+  .msg-box p{color:var(--text-2);font-size:15px;line-height:1.65;margin-top:12px}
+
+  .diag{border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);padding:22px;margin:26px 0}
+  .diag h3{font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:16px}
+  .diag ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .diag li{display:flex;gap:13px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text)}
+  .diag li .dot{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center}
+  .diag li .dot svg{width:15px;height:15px}
+
+  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px}
+  .cta-card h2{font-family:'Space Grotesk';font-weight:800;font-size:clamp(21px,4.4vw,27px);letter-spacing:-0.02em;text-align:center;line-height:1.2}
+  .cta-card .csub{color:var(--text-2);font-size:14.5px;text-align:center;margin:12px auto 22px;max-width:420px;line-height:1.6}
+  #r-cta-ico{display:flex;justify-content:center}
+  #r-cta-ico svg{width:46px;height:46px;color:var(--accent);margin-bottom:14px}
+  .field{margin-bottom:13px}
+  .field input{width:100%;padding:17px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Inter';font-size:16px;transition:border-color .15s,background .15s}
+  .field input::placeholder{color:var(--text-3)}
+  .field input:focus{outline:none;border-color:var(--accent);background:var(--accent-tint)}
+  .field input.invalid{border-color:var(--leaf)}
+  .err{color:var(--leaf);font-size:12.5px;margin-top:6px;display:none}
+  .err.show{display:block}
+  .privacy{text-align:center;color:var(--text-3);font-size:12px;margin-top:15px;line-height:1.5}
+
+  /* BOOKING / THANKS */
+  .center-head{text-align:center;margin-bottom:26px;padding-top:6px}
+  .center-head h2{font-family:'Space Grotesk';font-weight:800;font-size:clamp(26px,5.2vw,38px);letter-spacing:-0.02em;line-height:1.1;text-transform:uppercase}
+  .center-head p{color:var(--text-2);font-size:15px;line-height:1.6;max-width:460px;margin:14px auto 0}
+  .cta-points{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin:20px 0 10px}
+  .cta-points span{font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:7px}
+  .cta-points span svg{width:15px;height:15px;color:var(--accent)}
+  #booking-mount iframe{width:100%;min-height:720px;border:none;border-radius:var(--radius);background:#fff;margin-top:10px}
+  .thanks-ico{color:var(--accent);display:flex;justify-content:center;margin-bottom:18px;animation:floaty 3s ease-in-out infinite}
+  .thanks-ico svg{width:64px;height:64px}
+
+  footer{text-align:center;color:var(--text-3);font-size:12px;margin-top:36px;padding-top:22px;border-top:1px solid var(--border)}
+  footer b{color:var(--text-2)}
+
+  @media (max-width:520px){
+    main{padding:16px 16px 72px}
+    .stat{padding:18px 6px}.stat .num{font-size:23px}
+    .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
+    .num-box{padding:28px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<div class="wrap">
+  <header><div class="hdr-inner">
+    <div class="logo"><img id="logo-img" alt="Sky Scaling" src=""><span class="fallback">Sky Scaling</span></div>
+    <span class="pill">Free Assessment</span>
+  </div></header>
+
+  <main>
+    <!-- INTRO -->
+    <section class="screen active" id="s-intro">
+      <span class="script">How much are you leaving on</span>
+      <h1 class="hero-title"><span class="top">The</span><span class="hl">Table</span></h1>
+      <p class="hero-sub">You didn't get licensed to chase people down. See exactly how much <b>Living Benefits commission</b> you're leaving on the table every month, and the system to capture it, on autopilot.</p>
+      <div class="stats" id="intro-stats"></div>
+      <button class="btn big" onclick="Funnel.start()">See what I'm leaving on the table <span class="arrow">&rarr;</span></button>
+      <p class="trust">Based on real results from our Canadian Living Benefits agents.</p>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="s-quiz">
+      <div id="q-stage">
+        <div class="q-count" id="q-count"></div>
+        <div class="progress" id="q-progress"></div>
+        <h2 class="q-title" id="q-title"></h2>
+        <p class="q-sub" id="q-sub"></p>
+        <div class="opts" id="q-opts"></div>
+      </div>
+      <button class="back" onclick="Funnel.back()">&larr; Back</button>
+    </section>
+
+    <!-- LOADING -->
+    <section class="screen" id="s-loading">
+      <div class="loader">
+        <div class="halo"></div>
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="66" fill="none" stroke="rgba(148,160,196,0.14)" stroke-width="9"/>
+          <circle id="load-ring" cx="75" cy="75" r="66" fill="none" stroke="#5271ff" stroke-width="9" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="414.7"/>
+        </svg>
+        <div class="lpct" id="load-pct">0%</div>
+      </div>
+      <div class="load-title">Calculating your potential</div>
+      <div class="load-sub" id="load-sub">Analyzing your 6 answers...</div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="s-result">
+      <div id="r-top"></div>
+      <div id="r-diag-wrap"></div>
+      <div class="cta-card">
+        <div id="r-cta-ico"></div>
+        <h2 id="r-form-title">See How The System Works</h2>
+        <p class="csub" id="r-form-sub">Enter your details and we will show you how the system works, plus the option to talk to our team.</p>
+        <form id="lead-form" novalidate>
+          <div class="field"><input id="f-name" type="text" autocomplete="given-name" placeholder="Your full name"><div class="err" id="e-name">Please enter your name.</div></div>
+          <div class="field"><input id="f-email" type="email" autocomplete="email" placeholder="Your email"><div class="err" id="e-email">Please enter a valid email.</div></div>
+          <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
+          <button class="btn big" type="submit" id="f-submit">Show me how it works <span class="arrow">&rarr;</span></button>
+          <p class="privacy">&#128274; Your info stays private. No spam, ever.</p>
+        </form>
+        <div id="r-resource" style="display:none">
+          <a class="btn big" id="r-resource-btn" href="#">See the free resource <span class="arrow">&rarr;</span></a>
+          <p class="privacy">No pitch. Just the exact steps to get ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="screen" id="s-booking">
+      <div class="center-head">
+        <h2>Let's Walk You Through It.</h2>
+        <p id="book-sub">Pick a time for your free 15-minute strategy call. We'll map exactly how to capture what you're leaving on the table.</p>
+        <div class="cta-points">
+          <span id="cp1">15-min call</span>
+          <span id="cp2">Honest fit check</span>
+          <span id="cp3">Custom plan</span>
+        </div>
+      </div>
+      <div id="booking-mount"></div>
+    </section>
+
+    <!-- THANKS (disqualified) -->
+    <section class="screen" id="s-thanks">
+      <div class="thanks-ico" id="thanks-ico"></div>
+      <div class="center-head">
+        <h2 id="thanks-title">Thanks for being honest.</h2>
+        <p id="thanks-msg"></p>
+      </div>
+      <footer>Built by <b>Sky Scaling</b> &#127809; Living Benefits leads for Canadian life agents.</footer>
+    </section>
+  </main>
+</div>
+
+<script src="https://link.skyscaling.com/js/form_embed.js"></script>
+<script>
+(function(){
+  "use strict";
+  var CFG = window.SKY_CONFIG || {};
+  var FAST = !!window.SKY_TEST;
+  var ADV = FAST?0:340, LOAD=FAST?0:2500;
+
+  var li = document.getElementById('logo-img');
+  if(CFG.LOGO_URL){ li.src = CFG.LOGO_URL; }
+  li.onerror = function(){ li.style.display='none'; document.querySelector('.logo .fallback').style.display='inline-block'; };
+  if(!CFG.LOGO_URL){ li.onerror(); }
+
+  // ---------- icons (Lucide-style) ----------
+  var P = {
+    shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+    clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    sprout:'<path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>',
+    trend:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+    bars:'<line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>',
+    award:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+    flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    layers:'<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
+    bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+    xc:'<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
+    crown:'<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>',
+    dollar:'<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    coins:'<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>',
+    note:'<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+    bank:'<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
+    plus:'<circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/>',
+    cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/>',
+    calc:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="m9 16 2 2 4-4"/>',
+    inf:'<path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/>',
+    rocket:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+    search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+    zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+    dice:'<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 8h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    party:'<path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 12"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/>'
+  };
+  function icon(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(P[n]||P.target)+'</svg>'; }
+  var PALETTE=['#5271ff','#22c55e','#f59e0b','#ec4899','#14b8a6','#8b5cf6'];
+
+  // ---------- questions (Gabriel's qualification + calc inputs) ----------
+  var QUESTIONS = [
+    { id:'license', q:'Are you a licensed life insurance agent in Canada (Life & A&S)?', opts:[
+      {ic:'shield', t:'Yes, licensed (Life & A&S)', v:'yes'},
+      {ic:'clock', t:'In the process of getting licensed', v:'in_process', dq:true},
+      {ic:'user', t:"No, I'm not an agent", v:'not_agent', dq:true}
+    ]},
+    { id:'experience', q:'How long have you been licensed and actively selling?', opts:[
+      {ic:'sprout', t:'Less than 1 year', v:'lt1', dq:true},
+      {ic:'trend', t:'1 to 3 years', v:'y1_3'},
+      {ic:'bars', t:'3 to 5 years', v:'y3_5'},
+      {ic:'award', t:'5+ years', v:'y5'}
+    ]},
+    { id:'sellingLB', q:'Do you currently sell living benefits?', sub:'Critical illness, disability, accident coverage', opts:[
+      {ic:'flame', t:'Yes, I specialize in living benefits', v:'specialize'},
+      {ic:'layers', t:'I sell some, mostly life insurance', v:'some'},
+      {ic:'bulb', t:"Haven't sold any yet, but I'm open to it", v:'open'},
+      {ic:'xc', t:"I don't want to sell living benefits", v:'dont_want', dq:true}
+    ]},
+    { id:'closes', q:'How many new clients do you close in a typical month?', opts:[
+      {ic:'user', t:'0 to 2', v:'c0_2'},
+      {ic:'users', t:'3 to 5', v:'c3_5'},
+      {ic:'trend', t:'6 to 10', v:'c6_10'},
+      {ic:'crown', t:'10+', v:'c10'}
+    ]},
+    { id:'commission', q:"What's your average commission per sale?", opts:[
+      {ic:'dollar', t:'Under $1,000', v:'u1000'},
+      {ic:'coins', t:'$1,000 to $1,500', v:'m1_15'},
+      {ic:'note', t:'$1,500 to $2,000', v:'m15_2'},
+      {ic:'bank', t:'$2,000 to $3,000', v:'m2_3'},
+      {ic:'crown', t:'$3,000+', v:'m3plus'}
+    ]},
+    { id:'timeline', q:'If this is a great fit, how soon would you want to start?', opts:[
+      {ic:'rocket', t:'Right away', v:'now'},
+      {ic:'zap', t:'Within 30 days', v:'d30'},
+      {ic:'cal', t:'Within 60 to 90 days', v:'d6090'},
+      {ic:'search', t:'Just exploring for now', v:'exploring'}
+    ]}
+  ];
+
+  var state = { i:0, dir:1, answers:{}, contact:{}, tracking:{}, result:null, qualified:true, dqReason:null, sent:false, advancing:false };
+
+  (function(){
+    var p = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','ttclid'].forEach(function(k){
+      var v=p.get(k); if(v) state.tracking[k]=v;
+    });
+    state.tracking.landing_url = window.location.href;
+    state.tracking.referrer = document.referrer||'';
+  })();
+
+  // intro stats
+  document.getElementById('intro-stats').innerHTML =
+    '<div class="stat"><div class="sico" style="color:#5271ff">'+icon('clock')+'</div><div class="num">2</div><div class="lbl">Min to finish</div></div>'+
+    '<div class="stat"><div class="sico" style="color:#ec4899">'+icon('target')+'</div><div class="num">6</div><div class="lbl">Questions</div></div>'+
+    '<div class="stat"><div class="sico" style="color:#22c55e">'+icon('check')+'</div><div class="num">100%</div><div class="lbl">Personalized</div></div>';
+
+  function show(id){
+    var l=document.querySelectorAll('.screen');
+    for(var i=0;i<l.length;i++) l[i].classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function anim(el,name){ el.style.animation='none'; void el.offsetWidth; el.style.animation=name; }
+
+  function renderQuestion(){
+    var Q = QUESTIONS[state.i];
+    document.getElementById('q-count').textContent = 'Question '+(state.i+1)+' / '+QUESTIONS.length;
+    var prog=document.getElementById('q-progress'); prog.innerHTML='';
+    for(var j=0;j<QUESTIONS.length;j++){
+      var seg=document.createElement('span'); if(j<=state.i) seg.className='done';
+      var fill=document.createElement('i'); seg.appendChild(fill); prog.appendChild(seg);
+    }
+    document.getElementById('q-title').textContent=Q.q;
+    var sub=document.getElementById('q-sub'); sub.textContent=Q.sub||''; sub.style.display=Q.sub?'block':'none';
+
+    var wrap=document.getElementById('q-opts'); wrap.innerHTML='';
+    var chosen=state.answers[Q.id];
+    Q.opts.forEach(function(o,idx){
+      var b=document.createElement('button'); b.type='button'; b.className='opt'+(chosen===o.v?' sel':'');
+      var oico=document.createElement('span'); oico.className='oico'; oico.innerHTML=icon(o.ic); var __c=PALETTE[idx%PALETTE.length]; oico.style.color=__c; oico.style.background=__c+'22'; oico.style.borderColor=__c+'55';
+      var otxt=document.createElement('span'); otxt.className='otxt';
+      var ot=document.createElement('span'); ot.className='ot'; ot.textContent=o.t; otxt.appendChild(ot);
+      if(o.s){ var os=document.createElement('span'); os.className='os'; os.textContent=o.s; otxt.appendChild(os); }
+      var rad=document.createElement('span'); rad.className='radio';
+      b.appendChild(oico); b.appendChild(otxt); b.appendChild(rad);
+      b.onclick=function(){ choose(Q,o,b,wrap); };
+      wrap.appendChild(b);
+    });
+    anim(document.getElementById('q-stage'), (state.dir<0?'slideL':'slideR')+' .4s cubic-bezier(.2,.7,.2,1) both');
+  }
+
+  function choose(Q,o,b,wrap){
+    if(state.advancing) return;
+    state.answers[Q.id]=o.v;
+    var all=wrap.querySelectorAll('.opt'); for(var k=0;k<all.length;k++) all[k].classList.remove('sel');
+    b.classList.add('sel');
+    state.advancing=true;
+    setTimeout(function(){ state.advancing=false; state.dir=1;
+      if(state.i<QUESTIONS.length-1){ state.i++; renderQuestion(); }
+      else { goToResult(); }
+    }, ADV);
+  }
+
+  // ---------- qualify + calc ----------
+  function evaluate(){
+    var a=state.answers, reason=null;
+    for(var i=0;i<QUESTIONS.length;i++){
+      var Q=QUESTIONS[i], v=a[Q.id];
+      var o=Q.opts.filter(function(x){return x.v===v;})[0];
+      if(o && o.dq && !reason){
+        if(Q.id==='license' && v==='not_agent') reason='not_agent';
+        else if(Q.id==='license' && v==='in_process') reason='in_process';
+        else if(Q.id==='experience') reason='experience';
+        else if(Q.id==='sellingLB') reason='dont_want';
+        else reason='other';
+      }
+    }
+    state.qualified = !reason;
+    state.dqReason = reason;
+  }
+
+  function calc(){
+    var a=state.answers;
+    /* Our clients add ~3 extra Living Benefits deals/month to start (and it usually grows from there).
+       DEALS = concrete starting number; commission is mapped into the real LB range. */
+    var DEALS=3;
+    var comm={u1000:1000,m1_15:1250,m15_2:1750,m2_3:2500,m3plus:3000}[a.commission]||1500;
+    var monthly=DEALS*comm;
+    monthly=Math.max(1500,Math.min(monthly,10000));
+    var annual=Math.round(monthly*12/100)*100;
+    state.result={monthly:monthly,annual:annual,deals:DEALS,comm:comm};
+    return state.result;
+  }
+
+  function money(n){ return '$'+Number(n).toLocaleString('en-US'); }
+
+  function diagnosis(){
+    var a=state.answers,out=[];
+    if(a.sellingLB==='open'||a.sellingLB==='some')
+      out.push("You're barely touching Living Benefits, the one product with no price comparison.");
+    if(a.closes==='c0_2'||a.closes==='c3_5')
+      out.push("Your monthly volume has clear room to grow with pre-qualified calls.");
+    out.push("No consistent flow of qualified Living Benefits appointments hitting your calendar.");
+    if(a.timeline==='now'||a.timeline==='d30')
+      out.push("You're ready to move now, so every month without a system is money gone.");
+    var seen={},f=[]; out.forEach(function(t){ if(!seen[t]&&f.length<3){seen[t]=1;f.push(t);} });
+    return f;
+  }
+
+  function goToResult(){
+    evaluate();
+    show('s-loading');
+    startLoader(function(){ renderResult(); show('s-result'); });
+  }
+
+  function startLoader(done){
+    var ring=document.getElementById('load-ring'), pct=document.getElementById('load-pct'), sub=document.getElementById('load-sub');
+    var C=414.7, start=Date.now();
+    var msgs=['Analyzing your '+QUESTIONS.length+' answers...','Calculating your missed commission...','Building your custom plan...'];
+    if(FAST){ ring.style.strokeDashoffset=0; pct.textContent='100%'; setTimeout(done,0); return; }
+    var iv=setInterval(function(){
+      var t=Math.min(1,(Date.now()-start)/LOAD);
+      var e=1-Math.pow(1-t,3);
+      ring.style.strokeDashoffset=String(C*(1-e));
+      pct.textContent=Math.round(e*100)+'%';
+      if(sub){ sub.textContent=msgs[Math.min(msgs.length-1,Math.floor(t*msgs.length))]; }
+      if(t>=1){ clearInterval(iv); setTimeout(done,220); }
+    },16);
+  }
+
+  function countUp(el,target){
+    if(FAST){ el.textContent=money(target); return; }
+    var start=Date.now(),dur=1100;
+    var iv=setInterval(function(){
+      var t=Math.min(1,(Date.now()-start)/dur), e=1-Math.pow(1-t,3);
+      el.textContent=money(Math.round(target*e/100)*100);
+      if(t>=1){ clearInterval(iv); el.textContent=money(target); }
+    },16);
+  }
+
+  var DQ_MSG={
+    not_agent:{title:'This one is for licensed agents.', msg:"Our whole system is built for licensed Canadian Life & A&S agents selling Living Benefits. Right now that's not you, so it wouldn't be a fit."},
+    in_process:{title:'Come back once you are licensed.', msg:"We work only with agents who can legally sell Living Benefits today. Finish your license and reach back out, we'd love to help you launch."},
+    experience:{title:'Get a few more reps in first.', msg:"We plug into agents with at least a year of active selling. Build a bit more experience and come back, the offer will still be here."},
+    dont_want:{title:'We run entirely on Living Benefits.', msg:"Our whole system is built around Living Benefits. If that's not something you want to sell, we're not the right partner for you."},
+    other:{title:'Not the right fit yet.', msg:"Based on your answers, this isn't the right fit right now. No hard feelings."}
+  };
+
+  function renderResult(){
+    var top=document.getElementById('r-top');
+    var diagWrap=document.getElementById('r-diag-wrap');
+    if(state.qualified){
+      calc();
+      document.getElementById('lead-form').style.display='';
+      document.getElementById('r-resource').style.display='none';
+      document.getElementById('r-cta-ico').innerHTML='';
+      top.innerHTML=
+        '<div class="r-eyebrow">Your estimate</div>'+
+        '<div class="r-script">You are leaving about</div>'+
+        '<div class="num-box">'+
+          '<div class="num-big" id="r-monthly">$0</div>'+
+          '<div class="num-cap">Per month on the table</div>'+
+          '<div class="num-div"></div>'+
+          '<div class="num-annual" id="r-annual">$0</div>'+
+          '<div class="num-annual-cap">Over 12 months</div>'+
+        '</div>'+
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At your '+money(state.result.comm)+' commission, that is the number above, and it usually grows from there.</p>'+
+        '<p class="r-line">In a free 15-minute call, we will show you the exact system to install to go capture this, on autopilot.</p>';
+      var ds=diagnosis(),html='<div class="diag"><h3>What is costing you</h3><ul>';
+      ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
+      diagWrap.innerHTML=html+'</ul></div>';
+      document.getElementById('r-form-title').textContent='See How The System Works';
+      document.getElementById('r-form-sub').textContent='Enter your details and we will show you exactly how the system works and how we would build it for you. You will also get to talk it through with our team.';
+      document.getElementById('f-submit').innerHTML='Show me how it works <span class="arrow">&rarr;</span>';
+      countUp(document.getElementById('r-monthly'), state.result.monthly);
+      countUp(document.getElementById('r-annual'), state.result.annual);
+    } else {
+      var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
+      top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">Straight talk</div>';
+      diagWrap.innerHTML='';
+      document.getElementById('r-cta-ico').innerHTML=icon('shield');
+      document.getElementById('lead-form').style.display='none';
+      document.getElementById('r-resource').style.display='';
+      document.getElementById('r-form-title').textContent=m.title;
+      document.getElementById('r-form-sub').textContent=m.msg;
+      document.getElementById('r-resource-btn').setAttribute('href', withTracking(CFG.RESOURCE_URL||'resource.html'));
+    }
+  }
+
+  function payload(){
+    var a=state.answers;
+    function label(qid,val){
+      for(var i=0;i<QUESTIONS.length;i++){ if(QUESTIONS[i].id===qid){
+        var o=QUESTIONS[i].opts.filter(function(x){return x.v===val;})[0]; return o?o.t:val; } }
+      return val;
+    }
+    var d={
+      firstName:state.contact.firstName, email:state.contact.email, phone:state.contact.phone,
+      source:'Living Benefits Quiz Funnel',
+      qualified:state.qualified, dq_reason:state.dqReason,
+      estimated_monthly:state.result?state.result.monthly:null,
+      estimated_annual:state.result?state.result.annual:null,
+      submitted_at:new Date().toISOString()
+    };
+    Object.keys(a).forEach(function(k){ d['q_'+k]=a[k]; d['q_'+k+'_label']=label(k,a[k]); });
+    Object.keys(state.tracking).forEach(function(k){ d[k]=state.tracking[k]; });
+    return d;
+  }
+  function sendLead(){
+    if(state.sent) return Promise.resolve(); state.sent=true;
+    var url=CFG.WEBHOOK_URL;
+    if(!url){ console.log('[Sky Scaling] No WEBHOOK_URL set. Payload:', payload()); return Promise.resolve(); }
+    return fetch(url,{method:'POST',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload())})
+      .catch(function(e){ console.warn('[Sky Scaling] Webhook failed:',e); });
+  }
+  function withTracking(u){ var qp=new URLSearchParams(); Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); }); var q=qp.toString(); return q?(u+(u.indexOf('?')>-1?'&':'?')+q):u; }
+  function bookingSrc(){
+    var base=CFG.BOOKING_URL||'',c=state.contact||{},qp=new URLSearchParams();
+    if(c.firstName) qp.set('first_name',c.firstName);
+    if(c.email) qp.set('email',c.email);
+    if(c.phone) qp.set('phone',c.phone);
+    Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
+    return base+(base.indexOf('?')>-1?'&':'?')+qp.toString();
+  }
+
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validPhone(v){ return v.replace(/\D/g,'').length>=10; }
+
+  document.getElementById('lead-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var email=document.getElementById('f-email').value.trim();
+    var phone=document.getElementById('f-phone').value.trim();
+    var ok=true;
+    function mark(id,eid,good){ document.getElementById(id).classList.toggle('invalid',!good); document.getElementById(eid).classList.toggle('show',!good); if(!good) ok=false; }
+    mark('f-name','e-name',name.length>=1);
+    mark('f-email','e-email',validEmail(email));
+    mark('f-phone','e-phone',validPhone(phone));
+    if(!ok) return;
+    state.contact={firstName:name,email:email,phone:phone};
+    sendLead();
+    if(state.qualified){
+      var c=state.contact, qp=new URLSearchParams();
+      if(c.firstName) qp.set('first_name',c.firstName);
+      if(c.email) qp.set('email',c.email);
+      if(c.phone) qp.set('phone',c.phone);
+      if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
+      Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
+      var dest=(CFG.BOOKING_PAGE_URL||'booking.html');
+      window.location.href=dest+(dest.indexOf('?')>-1?'&':'?')+qp.toString();
+      return;
+    } else {
+      document.getElementById('thanks-ico').innerHTML=icon('shield');
+      document.getElementById('thanks-title').textContent='Thanks, '+(name.split(' ')[0])+'.';
+      var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
+      document.getElementById('thanks-msg').textContent="We've saved your details and we'll reach out when the timing makes sense. "+m.msg;
+      show('s-thanks');
+    }
+  });
+
+  window.Funnel={
+    start:function(){ state.i=0; state.dir=1; renderQuestion(); show('s-quiz'); },
+    back:function(){ state.dir=-1; if(state.i>0){ state.i--; renderQuestion(); } else { show('s-intro'); } }
+  };
+
+  document.addEventListener('keydown',function(e){
+    if(!document.getElementById('s-quiz').classList.contains('active')) return;
+    var n=parseInt(e.key,10);
+    if(n>=1){ var opts=document.querySelectorAll('#q-opts .opt'); if(opts[n-1]) opts[n-1].click(); }
+  });
+})();
+</script>
+</body>
+</html>
+                                                                                                                                                   
