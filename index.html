@@ -674,7 +674,6 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
     state.contact={firstName:first,lastName:last,email:email,phone:phone};
     var sendP=sendLead();
     if(state.qualified){
-      if(window.fbq){ fbq('track','Lead',{value:(state.result&&state.result.monthly)||0,currency:'CAD'}); }
       if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
       var c=state.contact, qp=new URLSearchParams();
       if(c.firstName) qp.set('first_name',c.firstName);
