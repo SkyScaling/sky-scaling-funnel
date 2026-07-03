@@ -658,7 +658,22 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   }
 
   function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function validPhone(v){ return v.replace(/\D/g,'').length>=10; }
+  function validPhone(v){ var d=(v||'').replace(/\D/g,''); return d.length===10 || (d.length===11 && d.charAt(0)==='1'); }
+
+  /* live phone formatting -> (XXX) XXX-XXXX; leaves manual "+"/international entries alone */
+  (function(){
+    var el=document.getElementById('f-phone'); if(!el) return;
+    function fmt(d){ if(!d) return ''; if(d.length<4) return '('+d+(d.length===3?')':''); if(d.length<7) return '('+d.slice(0,3)+') '+d.slice(3); return '('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6,10); }
+    var prev='';
+    el.addEventListener('input',function(e){
+      if(el.value.indexOf('+')>-1){ prev=el.value.replace(/\D/g,''); return; }
+      var del=e.inputType && e.inputType.indexOf('delete')===0;
+      var d=el.value.replace(/\D/g,'');
+      if(del && d.length===prev.length && d.length>0){ d=d.slice(0,-1); }
+      if(d.length===11 && d.charAt(0)==='1'){ d=d.slice(1); }
+      d=d.slice(0,10); el.value=fmt(d); prev=d;
+    });
+  })();
 
   document.getElementById('lead-form').addEventListener('submit',async function(e){
     e.preventDefault();
