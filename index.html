@@ -581,13 +581,13 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
         '<div class="r-eyebrow">&lt; You qualify &gt;</div>'+
         '<div class="r-script">You\'re a fit, you\'re leaving about</div>'+
         '<div class="num-box">'+
-          '<div class="num-big" id="r-monthly">$0</div>'+
-          '<div class="num-cap">In missed commission each month</div>'+
+          '<div class="num-big"><span id="r-monthly">$0</span>+</div>'+
+          '<div class="num-cap">In missed commission each month, to start</div>'+
           '<div class="num-div"></div>'+
-          '<div class="num-annual" id="r-annual">$0</div>'+
+          '<div class="num-annual"><span id="r-annual">$0</span>+</div>'+
           '<div class="num-annual-cap">Over 12 months</div>'+
         '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At your '+money(state.result.comm)+' commission, that is the number above, and it usually grows from there.</p>';
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At an average '+money(state.result.comm)+' a deal for the range you picked, that is the number above, and it usually grows from there.</p>';
       var ds=diagnosis(),dhtml='<div class="diag"><h3>What is costing you</h3><ul>';
       ds.forEach(function(t){ dhtml+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       dhtml+='</ul></div>';
