@@ -300,8 +300,8 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
         </svg>
         <div class="lpct" id="load-pct">0%</div>
       </div>
-      <div class="load-title">Calculating your potential</div>
-      <div class="load-sub" id="load-sub">Analyzing your 6 answers...</div>
+      <div class="load-title">Checking your eligibility</div>
+      <div class="load-sub" id="load-sub">Reviewing your 6 answers...</div>
     </section>
 
     <!-- RESULT -->
@@ -561,7 +561,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   function startLoader(done){
     var ring=document.getElementById('load-ring'), pct=document.getElementById('load-pct'), sub=document.getElementById('load-sub');
     var C=414.7, start=Date.now();
-    var msgs=['Analyzing your '+QUESTIONS.length+' answers...','Calculating your missed commission...','Building your custom plan...'];
+    var msgs=['Reviewing your '+QUESTIONS.length+' answers...','Checking if you\'re a fit...','Pulling your numbers...'];
     if(FAST){ ring.style.strokeDashoffset=0; pct.textContent='100%'; setTimeout(done,0); return; }
     var iv=setInterval(function(){
       var t=Math.min(1,(Date.now()-start)/LOAD);
