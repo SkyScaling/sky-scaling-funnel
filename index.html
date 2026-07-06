@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Much Are You Leaving On The Table? | Sky Scaling</title>
-<meta name="description" content="Find out the Living Benefits commission you're leaving on the table every month, and the exact system to capture it. Built for licensed Canadian Life & A&S agents.">
-<meta property="og:title" content="How Much Are You Leaving On The Table? | Sky Scaling">
-<meta property="og:description" content="A 2-minute assessment for licensed Canadian life agents. See your estimated missed Living Benefits commission and the system to capture it.">
+<title>Do You Qualify? | Sky Scaling</title>
+<meta name="description" content="See if you qualify for Sky Scaling's done-for-you Living Benefits lead system. Built for licensed Canadian Life & A&S agents. Answer 6 quick questions.">
+<meta property="og:title" content="Do You Qualify? | Sky Scaling">
+<meta property="og:description" content="We fill licensed Canadian agents' calendars with pre-qualified Living Benefits appointments, done for you. Answer 6 quick questions to see if you're a fit.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#06080F">
 <link rel="icon" type="image/png" href="https://assets.cdn.msgsndr.com/cIEiGPHzRWPAUucJJ6QA/media/63b8dfe3b7386074555ef2bb.png">
@@ -72,6 +72,7 @@
   .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c3ccff;border:1px solid var(--border);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
 
   main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:24px 22px 90px;display:flex;flex-direction:column;justify-content:safe center}
+  main:has(#s-intro.active){justify-content:flex-start;padding-top:54px}
   main:has(#s-result.active){justify-content:flex-start;padding-top:58px}
   main:has(#s-result.dq.active){justify-content:center;padding-top:24px}
   .screen{display:none}
@@ -90,6 +91,13 @@
   .hero-sub{text-align:center;color:var(--text-2);font-size:clamp(15px,2.4vw,18px);line-height:1.65;max-width:530px;margin:26px auto 0}
   .hero-sub b{color:#fff;font-weight:600}
   #s-intro{padding-top:0}
+
+  /* divider between sub and embedded question */
+  .quiz-divider{display:flex;align-items:center;gap:14px;max-width:560px;margin:30px auto 0}
+  .quiz-divider::before,.quiz-divider::after{content:"";flex:1;height:1px;background:var(--border-strong)}
+  .quiz-divider span{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);white-space:nowrap}
+  .intro-qlabel{text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(18px,3.4vw,22px);line-height:1.25;letter-spacing:-0.01em;color:#fff;max-width:540px;margin:22px auto 0}
+  #intro-q-opts{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:18px auto 0}
 
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0 6px}
   .stat{padding:22px 10px;text-align:center;background:var(--panel);border-radius:var(--radius)}
@@ -119,6 +127,7 @@
   .progress span{flex:1;height:5px;border-radius:99px;background:rgba(148,160,196,0.16);overflow:hidden}
   .progress span i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
   .progress span.done i{width:100%}
+  .q-momentum{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;min-height:14px;transition:opacity .3s}
   .q-title{font-family:'Space Grotesk';font-weight:800;font-size:clamp(27px,5.2vw,42px);line-height:1.08;letter-spacing:-0.02em;color:#fff}
   .q-sub{color:var(--text-3);font-size:14px;margin-top:10px}
 
@@ -206,13 +215,15 @@
 
   @media (max-width:520px){
     main{padding:16px 16px 72px}
+    .hero-title{font-size:clamp(40px,12vw,62px)}
     .stat{padding:18px 6px}.stat .num{font-size:23px}
     .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
     .num-box{padding:28px 16px}
     .frow{flex-direction:column;gap:0}
     .script{margin-bottom:10px}
     .stats{margin:22px 0 6px}
-    main:has(#s-intro.active),main:has(#s-quiz.active),main:has(#s-result.active){justify-content:flex-start;padding-top:42px}
+    main:has(#s-quiz.active),main:has(#s-result.active){justify-content:flex-start;padding-top:42px}
+    main:has(#s-intro.active){justify-content:flex-start;padding-top:32px}
     main:has(#s-result.dq.active){justify-content:center;padding-top:16px}
   }
 </style>
@@ -250,17 +261,19 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 <div class="wrap">
   <header><div class="hdr-inner">
     <div class="logo"><img id="logo-img" alt="Sky Scaling" src=""><span class="fallback">Sky Scaling</span></div>
-    <span class="pill">Free Assessment</span>
+    <span class="pill">See If You Qualify</span>
   </div></header>
 
   <main>
     <!-- INTRO -->
     <section class="screen active" id="s-intro">
-      <span class="script">How much are you leaving on</span>
-      <h1 class="hero-title"><span class="top">The</span><span class="hl">Table</span></h1>
-      <p class="hero-sub">You didn't get licensed to chase people down. See exactly how much <b>Living Benefits commission</b> you're leaving on the table every month. Then see the system that captures it for you, on autopilot.</p>
+      <span class="script">Done-for-you Living Benefits leads</span>
+      <h1 class="hero-title"><span class="top">Do You</span><span class="hl">Qualify?</span></h1>
+      <p class="hero-sub">We fill licensed Canadian agents' calendars with <b>pre-qualified Living Benefits appointments</b>, done for you. Answer 6 quick questions to see if you're a fit.</p>
+      <div class="quiz-divider"><span>Let's find out</span></div>
+      <div class="intro-qlabel" id="intro-qlabel"></div>
+      <div id="intro-q-opts"></div>
       <div class="stats" id="intro-stats"></div>
-      <button class="btn big" onclick="Funnel.start()">See what I'm leaving on the table <span class="arrow">&rarr;</span></button>
       <p class="trust">Real appointments booked for licensed Canadian Living Benefits advisors.</p>
     </section>
 
@@ -269,6 +282,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       <div id="q-stage">
         <div class="q-count" id="q-count"></div>
         <div class="progress" id="q-progress"></div>
+        <div class="q-momentum" id="q-momentum"></div>
         <h2 class="q-title" id="q-title"></h2>
         <p class="q-sub" id="q-sub"></p>
         <div class="opts" id="q-opts"></div>
@@ -296,16 +310,12 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       <div id="r-diag-wrap"></div>
       <div class="cta-card">
         <div id="r-cta-ico"></div>
-        <h2 id="r-form-title">Stop Leaving It On The Table.</h2>
-        <p class="csub" id="r-form-sub">Enter your details and we'll walk you through the exact system that turns that number into booked Living Benefits calls, plus a chance to talk it through with our team.</p>
+        <h2 id="r-form-title">Let's Build Your Lead System.</h2>
+        <p class="csub" id="r-form-sub">Drop your details and we'll show you exactly how we'd fill your calendar with pre-qualified Living Benefits appointments, plus a chance to talk it through with our team.</p>
         <form id="lead-form" novalidate>
-          <div class="frow">
-            <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
-            <div class="field"><input id="f-last" type="text" autocomplete="family-name" placeholder="Last name"><div class="err" id="e-last">Enter your last name.</div></div>
-          </div>
-          <div class="field"><input id="f-email" type="email" autocomplete="email" placeholder="Your email"><div class="err" id="e-email">Please enter a valid email.</div></div>
+          <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
           <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
-          <button class="btn big" type="submit" id="f-submit">Show me how it works <span class="arrow">&rarr;</span></button>
+          <button class="btn big" type="submit" id="f-submit">See how it works <span class="arrow">&rarr;</span></button>
           <p class="privacy">&#128274; Your info stays private. No spam, ever.</p>
         </form>
         <div id="r-resource" style="display:none">
@@ -456,6 +466,8 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   function renderQuestion(){
     var Q = QUESTIONS[state.i];
     document.getElementById('q-count').textContent = 'Question '+(state.i+1)+' / '+QUESTIONS.length;
+    var mom=document.getElementById('q-momentum');
+    if(mom){ var MOM=['','Nice, keep going','You\'re rolling','Halfway there','Almost done','Last one'][state.i]||''; mom.textContent=MOM; mom.style.display=MOM?'block':'none'; }
     var prog=document.getElementById('q-progress'); prog.innerHTML='';
     for(var j=0;j<QUESTIONS.length;j++){
       var seg=document.createElement('span'); if(j<=state.i) seg.className='done';
@@ -589,22 +601,23 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       document.getElementById('r-resource').style.display='none';
       document.getElementById('r-cta-ico').innerHTML='';
       top.innerHTML=
-        '<div class="r-eyebrow">&lt; Your estimate &gt;</div>'+
-        '<div class="r-script">You are leaving about</div>'+
+        '<div class="r-eyebrow">&lt; You qualify &gt;</div>'+
+        '<div class="r-script">You\'re a fit, you\'re leaving about</div>'+
         '<div class="num-box">'+
           '<div class="num-big" id="r-monthly">$0</div>'+
-          '<div class="num-cap">Per month on the table</div>'+
+          '<div class="num-cap">In missed commission each month</div>'+
           '<div class="num-div"></div>'+
           '<div class="num-annual" id="r-annual">$0</div>'+
           '<div class="num-annual-cap">Over 12 months</div>'+
         '</div>'+
         '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At your '+money(state.result.comm)+' commission, that is the number above, and it usually grows from there.</p>';
-      var ds=diagnosis(),html='<div class="diag"><h3>What is costing you</h3><ul>';
-      ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
-      diagWrap.innerHTML=html+'</ul></div>';
-      document.getElementById('r-form-title').textContent='Stop Leaving It On The Table.';
-      document.getElementById('r-form-sub').textContent='Enter your details and we\'ll walk you through the exact system that turns that number into booked Living Benefits calls, plus a chance to talk it through with our team.';
-      document.getElementById('f-submit').innerHTML='Show me how it works <span class="arrow">&rarr;</span>';
+      var ds=diagnosis(),dhtml='<div class="diag"><h3>What is costing you</h3><ul>';
+      ds.forEach(function(t){ dhtml+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
+      dhtml+='</ul></div>';
+      diagWrap.innerHTML=dhtml;
+      document.getElementById('r-form-title').textContent='Let\'s Build Your Lead System.';
+      document.getElementById('r-form-sub').textContent='Drop your details and we\'ll show you exactly how we\'d fill your calendar with pre-qualified Living Benefits appointments, plus a chance to talk it through with our team.';
+      document.getElementById('f-submit').innerHTML='See how it works <span class="arrow">&rarr;</span>';
       countUp(document.getElementById('r-monthly'), state.result.monthly);
       countUp(document.getElementById('r-annual'), state.result.annual);
     } else {
@@ -678,17 +691,13 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   document.getElementById('lead-form').addEventListener('submit',async function(e){
     e.preventDefault();
     var first=document.getElementById('f-first').value.trim();
-    var last=document.getElementById('f-last').value.trim();
-    var email=document.getElementById('f-email').value.trim();
     var phone=document.getElementById('f-phone').value.trim();
     var ok=true;
     function mark(id,eid,good){ document.getElementById(id).classList.toggle('invalid',!good); document.getElementById(eid).classList.toggle('show',!good); if(!good) ok=false; }
     mark('f-first','e-first',first.length>=1);
-    mark('f-last','e-last',last.length>=1);
-    mark('f-email','e-email',validEmail(email));
     mark('f-phone','e-phone',validPhone(phone));
     if(!ok) return;
-    state.contact={firstName:first,lastName:last,email:email,phone:phone};
+    state.contact={firstName:first,lastName:'',email:'',phone:phone};
     var sendP=sendLead();
     if(state.qualified){
       if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
@@ -712,9 +721,33 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
     }
   });
 
+  // ---------- embedded first question on the landing ----------
+  (function(){
+    var Q1=QUESTIONS[0], wrap=document.getElementById('intro-q-opts');
+    var lbl=document.getElementById('intro-qlabel'); if(lbl) lbl.textContent=Q1.q;
+    if(!wrap) return;
+    Q1.opts.forEach(function(o,idx){
+      var b=document.createElement('button'); b.type='button'; b.className='opt';
+      var oico=document.createElement('span'); oico.className='oico'; oico.innerHTML=icon(o.ic);
+      var __c=PALETTE[idx%PALETTE.length]; oico.style.color=__c; oico.style.background=__c+'22'; oico.style.borderColor=__c+'55';
+      var otxt=document.createElement('span'); otxt.className='otxt';
+      var ot=document.createElement('span'); ot.className='ot'; ot.textContent=o.t; otxt.appendChild(ot);
+      if(o.s){ var os=document.createElement('span'); os.className='os'; os.textContent=o.s; otxt.appendChild(os); }
+      var rad=document.createElement('span'); rad.className='radio';
+      b.appendChild(oico); b.appendChild(otxt); b.appendChild(rad);
+      b.onclick=function(){
+        if(window.gtag){ gtag('event','quiz_start'); gtag('event','quiz_answer',{step:1,question:Q1.id,answer:o.t}); }
+        state.answers[Q1.id]=o.v;
+        state.i=1; state.dir=1;
+        show('s-quiz'); renderQuestion();
+      };
+      wrap.appendChild(b);
+    });
+  })();
+
   window.Funnel={
-    start:function(){ if(window.gtag) gtag('event','quiz_start'); state.i=0; state.dir=1; renderQuestion(); show('s-quiz'); },
-    back:function(){ state.dir=-1; if(state.i>0){ state.i--; renderQuestion(); } else { show('s-intro'); } }
+    start:function(){ if(window.gtag) gtag('event','quiz_start'); state.i=1; state.dir=1; renderQuestion(); show('s-quiz'); },
+    back:function(){ state.dir=-1; if(state.i>1){ state.i--; renderQuestion(); } else { show('s-intro'); } }
   };
 
   document.addEventListener('keydown',function(e){
