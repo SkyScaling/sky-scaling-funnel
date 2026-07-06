@@ -310,12 +310,12 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       <div id="r-diag-wrap"></div>
       <div class="cta-card">
         <div id="r-cta-ico"></div>
-        <h2 id="r-form-title">Let's Build Your Lead System.</h2>
+        <h2 id="r-form-title">Let's Fill Your Calendar.</h2>
         <p class="csub" id="r-form-sub">Drop your details and we'll show you exactly how we'd fill your calendar with pre-qualified Living Benefits appointments, plus a chance to talk it through with our team.</p>
         <form id="lead-form" novalidate>
           <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
           <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
-          <button class="btn big" type="submit" id="f-submit">See how it works <span class="arrow">&rarr;</span></button>
+          <button class="btn big" type="submit" id="f-submit">Show me how <span class="arrow">&rarr;</span></button>
           <p class="privacy">&#128274; Your info stays private. No spam, ever.</p>
         </form>
         <div id="r-resource" style="display:none">
@@ -592,9 +592,9 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       ds.forEach(function(t){ dhtml+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       dhtml+='</ul></div>';
       diagWrap.innerHTML=dhtml;
-      document.getElementById('r-form-title').textContent='Let\'s Build Your Lead System.';
+      document.getElementById('r-form-title').textContent='Let\'s Fill Your Calendar.';
       document.getElementById('r-form-sub').textContent='Drop your details and we\'ll show you exactly how we\'d fill your calendar with pre-qualified Living Benefits appointments, plus a chance to talk it through with our team.';
-      document.getElementById('f-submit').innerHTML='See how it works <span class="arrow">&rarr;</span>';
+      document.getElementById('f-submit').innerHTML='Show me how <span class="arrow">&rarr;</span>';
       countUp(document.getElementById('r-monthly'), state.result.monthly);
       countUp(document.getElementById('r-annual'), state.result.annual);
     } else {
