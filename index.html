@@ -99,7 +99,7 @@
   .intro-qlabel{text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(18px,3.4vw,22px);line-height:1.25;letter-spacing:-0.01em;color:#fff;max-width:540px;margin:22px auto 0}
   #intro-q-opts{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:18px auto 0}
 
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0 6px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:38px 0 6px}
   .stat{padding:22px 10px;text-align:center;background:var(--panel);border-radius:var(--radius)}
   .stat:last-child{border-right:none}
   .stat .sico{color:var(--accent);display:flex;justify-content:center;margin-bottom:8px}
@@ -221,7 +221,7 @@
     .num-box{padding:28px 16px}
     .frow{flex-direction:column;gap:0}
     .script{margin-bottom:10px}
-    .stats{margin:22px 0 6px}
+    .stats{margin:32px 0 6px}
     main:has(#s-quiz.active),main:has(#s-result.active){justify-content:flex-start;padding-top:42px}
     main:has(#s-intro.active){justify-content:flex-start;padding-top:32px}
     main:has(#s-result.dq.active){justify-content:center;padding-top:16px}
@@ -334,7 +334,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   "use strict";
   var CFG = window.SKY_CONFIG || {};
   var FAST = !!window.SKY_TEST;
-  var ADV = FAST?0:340, LOAD=FAST?0:2500;
+  var ADV = FAST?0:280, LOAD=FAST?0:2500;
 
   var li = document.getElementById('logo-img');
   if(CFG.LOGO_URL){ li.src = CFG.LOGO_URL; }
