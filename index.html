@@ -160,7 +160,7 @@
 
   /* RESULT */
   .r-eyebrow{text-align:center;font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent)}
-  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5vw,36px);color:var(--text-2);margin:14px 0 0;line-height:1}
+  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5.5vw,40px);color:var(--text-2);margin:14px 0 0;line-height:1}
   .num-box{background:var(--accent);border-radius:20px;padding:34px 22px;text-align:center;box-shadow:var(--glow);margin-top:16px;animation:popIn .6s cubic-bezier(.2,.8,.2,1) both}
   .num-big{font-family:'Space Grotesk';font-weight:800;font-size:clamp(52px,13vw,92px);line-height:1;color:#fff;letter-spacing:-0.03em}
   .num-cap{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-top:8px}
@@ -169,20 +169,30 @@
   .num-annual-cap{font-family:'Space Grotesk';font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:6px}
   .r-line{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:480px;margin:24px auto 0}
 
+  .proof{margin:30px 0 0}
+  .proof-label{font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:16px}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .pcard{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px}
+  .pcard .pav{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--border-strong);display:block;margin-bottom:18px}
+  .pcard .pnum{font-family:'Space Grotesk';font-weight:800;font-size:34px;line-height:1;color:var(--accent);letter-spacing:-0.02em}
+  .pcard .pname{font-family:'Inter';font-weight:600;font-size:16px;color:#fff;margin-top:16px}
+  .pcard .pco{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
+  .pcard .pblurb{font-size:14px;color:var(--text-2);line-height:1.55;margin-top:14px}
+
   .msg-box{border:1px solid var(--border-strong);background:var(--panel);border-radius:20px;padding:30px 24px;text-align:center;margin-top:14px;animation:popIn .55s ease both}
   .msg-box .mi{color:var(--accent);display:flex;justify-content:center;margin-bottom:14px}
   .msg-box .mi svg{width:40px;height:40px}
   .msg-box h2{font-family:'Space Grotesk';font-weight:800;font-size:clamp(22px,4.6vw,28px);letter-spacing:-0.02em}
   .msg-box p{color:var(--text-2);font-size:15px;line-height:1.65;margin-top:12px}
 
-  .diag{border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);padding:22px;margin:26px 0}
+  .diag{border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);padding:22px;margin:30px 0}
   .diag h3{font-family:'Space Grotesk';font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:16px}
   .diag ul{list-style:none;display:flex;flex-direction:column;gap:14px}
   .diag li{display:flex;gap:13px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text)}
   .diag li .dot{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center}
   .diag li .dot svg{width:15px;height:15px}
 
-  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px}
+  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px;margin-top:30px}
   .cta-card h2{font-family:'Space Grotesk';font-weight:800;font-size:clamp(21px,4.4vw,27px);letter-spacing:-0.02em;text-align:center;line-height:1.2}
   .cta-card .csub{color:var(--text-2);font-size:14.5px;text-align:center;margin:12px auto 22px;max-width:420px;line-height:1.6}
   #r-cta-ico{display:flex;justify-content:center}
@@ -213,11 +223,23 @@
   footer b{color:var(--text-2)}
 
   @media (max-width:520px){
-    main{padding:16px 16px 72px}
+    main{padding:16px 22px 72px}
     .hero-title{font-size:clamp(40px,12vw,62px)}
     .stat{padding:18px 6px}.stat .num{font-size:23px}
     .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
     .num-box{padding:28px 16px}
+    .proof-grid{grid-template-columns:1fr;gap:10px}
+    .pcard{display:grid;grid-template-columns:auto 1fr;column-gap:15px;align-items:center;padding:16px 18px}
+    .pcard .pav{width:56px;height:56px;margin-bottom:0;grid-column:1;grid-row:1 / span 4;align-self:center}
+    .pcard .pnum{grid-column:2;font-size:26px}
+    .pcard .pname{grid-column:2;font-size:14px;margin-top:6px;line-height:1.2}
+    .pcard .pco{grid-column:2;font-size:9.5px;letter-spacing:0.1em;margin-top:2px}
+    .pcard .pblurb{grid-column:2;display:block;font-size:12.5px;margin-top:8px;line-height:1.4}
+    .diag{margin:26px 0}
+    .proof{margin:26px 0 0}
+    .cta-card{margin-top:26px}
+    .r-script{font-size:34px}
+    .r-line{margin-top:15px}
     .frow{flex-direction:column;gap:0}
     .script{margin-bottom:10px}
     .stats{margin:32px 0 6px}
@@ -534,7 +556,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   function startLoader(done){
     var ring=document.getElementById('load-ring'), pct=document.getElementById('load-pct'), sub=document.getElementById('load-sub');
     var C=414.7, start=Date.now();
-    var msgs=['Reviewing your '+QUESTIONS.length+' answers...','Checking if you\'re a fit...','Pulling your numbers...'];
+    var msgs=['Reviewing your '+QUESTIONS.length+' answers...','Checking if you\'re a fit...','Confirming your spot...'];
     if(FAST){ ring.style.strokeDashoffset=0; pct.textContent='100%'; setTimeout(done,0); return; }
     var iv=setInterval(function(){
       var t=Math.min(1,(Date.now()-start)/LOAD);
@@ -575,24 +597,20 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       document.getElementById('r-cta-ico').innerHTML='';
       top.innerHTML=
         '<div class="r-eyebrow">&lt; You qualify &gt;</div>'+
-        '<div class="r-script">You\'re a fit, you\'re leaving about</div>'+
-        '<div class="num-box">'+
-          '<div class="num-big"><span id="r-monthly">$0</span>+</div>'+
-          '<div class="num-cap">In missed commission each month, to start</div>'+
-          '<div class="num-div"></div>'+
-          '<div class="num-annual"><span id="r-annual">$0</span>+</div>'+
-          '<div class="num-annual-cap">Over 12 months</div>'+
-        '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Our clients average about '+state.result.deals+' extra Living Benefits deals a month in their first few months. At an average '+money(state.result.comm)+' a deal for the range you picked, that is the number above, and it usually grows from there.</p>';
+        '<div class="r-script">You\'re a fit.</div>'+
+        '<p class="r-line">Based on your answers, you\'re exactly the kind of licensed agent we build done-for-you Living Benefits systems for. We only take on a handful of agents per province, so spots are limited.</p>';
       var ds=diagnosis(),dhtml='<div class="diag"><h3>What is costing you</h3><ul>';
       ds.forEach(function(t){ dhtml+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       dhtml+='</ul></div>';
+      dhtml+='<div class="proof"><div class="proof-label">Proof from Canadian agents</div><div class="proof-grid">'+
+        '<div class="pcard"><img class="pav" src="chris.png" alt="Christopher Bee" onerror="this.style.display=\'none\'"><div class="pnum">$16,000</div><div class="pname">Christopher Bee</div><div class="pco">Desjardins</div><div class="pblurb">In his first two months. Just closed another.</div></div>'+
+        '<div class="pcard"><img class="pav" src="todd.png" alt="Todd Hoyem" onerror="this.style.display=\'none\'"><div class="pnum">$7,500</div><div class="pname">Todd Hoyem</div><div class="pco">HUB Financial</div><div class="pblurb">Three deals in his first three weeks.</div></div>'+
+        '<div class="pcard"><img class="pav" src="elroy.png" alt="Elroy Kelowan" onerror="this.style.display=\'none\'"><div class="pnum">$14,000</div><div class="pname">Elroy Kelowan</div><div class="pco">LMI Financial Group</div><div class="pblurb">First 15 days on the system. No warm market.</div></div>'+
+        '</div></div>';
       diagWrap.innerHTML=dhtml;
       document.getElementById('r-form-title').textContent='Let\'s Fill Your Calendar.';
-      document.getElementById('r-form-sub').textContent='Drop your details and we\'ll show you exactly how we\'d fill your calendar with pre-qualified Living Benefits appointments, plus a chance to talk it through with our team.';
+      document.getElementById('r-form-sub').textContent='Drop your name and number and we\'ll show you exactly how we\'d fill your calendar, and whether one of our spots is the right fit for you.';
       document.getElementById('f-submit').innerHTML='Show me how <span class="arrow">&rarr;</span>';
-      countUp(document.getElementById('r-monthly'), state.result.monthly);
-      countUp(document.getElementById('r-annual'), state.result.annual);
     } else {
       var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
       top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">&lt; Straight talk &gt;</div>';
