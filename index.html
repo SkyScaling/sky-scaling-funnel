@@ -683,6 +683,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
     var sendP=sendLead();
     if(state.qualified){
       if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
+      if(window.fbq){ fbq('track','Lead'); }
       var c=state.contact, qp=new URLSearchParams();
       if(c.firstName) qp.set('first_name',c.firstName);
       if(c.lastName) qp.set('last_name',c.lastName);
